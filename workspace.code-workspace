@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"files.associations": {
+			"stdbool.h": "c",
+			"ncurses.h": "c"
+		}
+	}
+}
