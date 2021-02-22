@@ -1,5 +1,5 @@
-#include <stdio.h>
+#include <cstdint>
 
-void fill_display(u_int8_t color);
-void plot(u_int8_t x, u_int8_t y, u_int8_t color);
+void fill_display(uint8_t color);
+void plot(uint8_t x, uint8_t y, uint8_t color);
 void draw_display();

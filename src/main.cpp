@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <cstdint>
 #include <stdlib.h>
 #include <stdbool.h>
 #include <ncurses.h>
@@ -32,7 +33,7 @@ int main(int argc, char* argv[]) {
   attroff(COLOR_PAIR(1));
 
   
-  u_int8_t color = 0;
+  uint8_t color = 0;
   bool quit = false;
 
   while (!quit) {
