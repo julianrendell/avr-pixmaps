@@ -1,2 +1,5 @@
 language = "cpp"
+# This run command will build, but will require manually re-making the build directory with cmake if source files/libs etc are modified.
 run = "cd build && make && ./app"
+# This version is safer, but takes more time.
+# run = "rm -rf build && mkdir build && cd build && cmake .. && make && ./app"
