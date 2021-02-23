@@ -32,8 +32,6 @@ int main(int argc, char* argv[]) {
   refresh();
   attroff(COLOR_PAIR(1));
 
-  
-  uint8_t color = 0;
   bool quit = false;
 
   while (!quit) {
@@ -52,7 +50,7 @@ int main(int argc, char* argv[]) {
     for ( int i=0; i< 10; i++) {
       plot(rand() % 64, rand() % 32, 15); //rand() % 4);
     }
-    draw_display();
+    draw_display(true);
     refresh();
 
     //++color &= 0x03;

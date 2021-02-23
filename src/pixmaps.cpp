@@ -41,7 +41,6 @@ void plot(uint8_t x, uint8_t y, uint8_t color) {
 uint8_t get(uint8_t x, uint8_t y) {
     uint8_t byte = x >> 3;
     uint8_t bit = x & 0x07;
-    uint8_t bit_mask = 0x01 << bit;
     uint8_t pixel = 0;
     for (int f=0; f<FIELDS; f++) {
         uint8_t field_val = (pix_fields[f][byte][y] >> bit)  & 0x01;
@@ -50,7 +49,12 @@ uint8_t get(uint8_t x, uint8_t y) {
     return pixel;
 }
 
-void draw_display() {
+/**
+ * @brief: commit the display buffer to the physical screen
+ *
+ * @param fading if each pixel should have 1 subtracted after being displayed -- currently only useful for index shifting/intensity only displays
+ */
+void draw_display(bool fading) {
     for (int y=0; y<HEIGHT; y++) {
         for (int x=0; x< WIDTH ; x++) {
 
@@ -81,10 +85,11 @@ void draw_display() {
             }
             mvaddch(y, x, pixel_char);
 
-            if (pixel > 0) {
-                pixel -= 1;
+            if (fading) { 
+              if (pixel > 0) {
+                  pixel -= 1;
+              }
             }
-            
             plot(x,y, pixel);
         }
     }
