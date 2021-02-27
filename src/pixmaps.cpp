@@ -1,11 +1,12 @@
 #include <ncurses.h>
+#include <iostream>
 
 #include "pixmaps.hpp"
 
 const uint8_t WIDTH = 64;
 const uint8_t HEIGHT = 32;
-const uint8_t FIELDS = 4;
-const uint8_t BUFFERS = 2;
+const uint8_t FIELDS = 3;
+const uint8_t BUFFERS = 1;
 
 uint8_t pix_fields[BUFFERS][FIELDS][WIDTH/8][HEIGHT];
 uint8_t ACTIVE_BUFFER = 0 ; // current buffer being drawn in
@@ -76,33 +77,13 @@ void draw_display() {
 
   for (int y=0; y<HEIGHT; y++) {
       for (int x=0; x< WIDTH ; x++) {
+        uint8_t pixel = get(RENDER_BUFFER, x, y);
+        init_pair(1, pixel, COLOR_BLACK);
+        std::cout<<"pixel "<< pixel*2 << std::endl;
+        attron(COLOR_PAIR(1));
+        mvaddch(y, x, 'X');
+        attroff(COLOR_PAIR(1));
 
-          uint8_t pixel = get(RENDER_BUFFER, x, y);
-          
-          char pixel_char;
-          switch (pixel)
-          {
-          case 0:
-              pixel_char = ' ';
-              break;
-
-          case 1:
-              pixel_char = '.';
-              break;
-          
-          case 2:
-              pixel_char = '+';
-              break;
-
-          case 3:
-              pixel_char = '0';
-              break;
-
-          default:
-              pixel_char = '0' + pixel;
-              break;
-          }
-          mvaddch(y, x, pixel_char);
       }
   }
   DISPLAY_FLAGS &= ~(display_flags_t::rendering);

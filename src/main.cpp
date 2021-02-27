@@ -48,7 +48,7 @@ int main(int argc, char* argv[]) {
     //fill_display(color);
     //draw_display();
     for ( int i=0; i< 10; i++) {
-      plot(rand() % 64, rand() % 32, rand() % 15); //rand() % 4);
+      plot(rand() % 64, rand() % 32, rand() % 7); //rand() % 4);
     }
     request_display_swap();
     refresh();
